@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel=stylesheet href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel=stylesheet href="assets/style.css">
+	<title></title>
+</head>
+<body>
+	<div class="jumbotron">
+		<h1 class="jtron-head">Go anywhere, now.</h1>
+		<p class="jtron-head">Book your train today!</p>
+	</div>
+
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Current Train Schedule</h3>
+		  </div>
+		  <div class="panel-body">
+			  <table class="table" id="table">
+				  <thead>
+				    <tr>
+				      <th>Train Name</th>
+				      <th>Destination</th>
+				      <th>Frequency (min)</th>
+				      <th>Next Arrival</th>
+				      <th>Minutes Away</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    	 
+				  </tbody>
+			</table>
+		  </div>
+		</div>
+
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Add Train</h3>
+		  </div>
+		  <div class="panel-body">
+			  <h4>Train Name</h4>
+			  <input type="text" class="form-control" id="name" aria-describedby="train-name">
+			  <h4>Destination</h4>
+			  <input type="text" class="form-control" id="destination" aria-describedby="destination">
+			  <h4>First Train Time (HH:MM - Military Time)</h4>
+			  <input type="text" class="form-control" id="train-time" aria-describedby="First Train Time in Military Time">
+			  <h4>Frequency (min)</h4>
+			  <input type="text" class="form-control" id="frequency" aria-describedby="frequency in minutes">
+		  </div>
+		  <button class="btn btn-default" type="button" id="submit">Submit</button>
+
+		</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
+	<script src="assets/code.js"></script>
+</body>
+</html>

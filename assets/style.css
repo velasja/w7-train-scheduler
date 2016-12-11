@@ -1,0 +1,30 @@
+.jumbotron {
+	background-image: url("train-img.jpg");
+	background-color: rgb(173,173,173);
+	background-blend-mode: multiply;
+	color: white;
+	margin:1% 12%;
+	border-radius: 7px;
+}
+
+.jtron-head {
+	margin: auto 5%;
+	text-shadow: 1px 1px #222;
+}
+
+.panel-default>.panel-heading {
+    color: #fff;
+    background-color: #000000;
+    border-color: #ddd;
+}
+
+.panel.panel-default {
+	margin:1% 12%;
+}
+
+.btn-default {
+    color: #fff;
+    background-color: #f70000;
+    border-color: #ccc;
+    margin: 0 15px 7px;
+}
