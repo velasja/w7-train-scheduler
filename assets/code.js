@@ -18,8 +18,37 @@ var name = "";
 var destination = "";
 var frequency = 0;
 var nextArrival = 0;
+var firstTrainTime = 0;
 var minAway = 0;
 
+// Use moment js to convert time inputs
+
+function mAway(){
+	var currentTime = moment();
+	
+	var parsedTime = moment(firstTrainTime, "hh:mm A");
+	console.log(parsedTime);
+
+	var diffTime = currentTime.diff(moment(parsedTime), "minutes");
+	console.log("Difference in time: " + diffTime);
+
+	// Remainder
+	var remainder = diffTime % frequency;
+	console.log(remainder);
+	
+	// Minutes until train
+	minAway = frequency - remainder;
+	console.log("Minutes until train: " + minAway);
+
+	return minAway;
+};
+
+function nextTrain(){
+
+	nextArrival = moment().add(minAway, "minutes");
+	return nextArrival.format("hh:mm A");
+	console.log(nextArrival);
+};
 // Capture Button Click
 $("#submit").on("click", function() {
 	event.preventDefault();
@@ -27,15 +56,22 @@ $("#submit").on("click", function() {
 	  // Grabbed values from text boxes
 		name = $("#name").val().trim();
 		destination = $("#destination").val().trim();
-		nextArrival = $("#train-time").val().trim();
+		firstTrainTime = $("#train-time").val().trim();
+		console.log(firstTrainTime);
 		frequency = $("#frequency").val().trim();
+		console.log(frequency);
+
+		minAway = mAway();
+		nextArrival = nextTrain();
+		console.log(nextArrival);
 
 		  // Code for handling the push
 		  database.ref().push({
 		    name: name,
 		    destination: destination,
-		    nextArrival: nextArrival,
-		    frequency: frequency
+		    time: nextArrival,
+		    frequency: frequency,
+		    min: minAway
 		  });
 
 
@@ -52,15 +88,16 @@ database.ref().on("child_added", function(snapshot) {
 	console.log(snapshot.val().name);
 	console.log(snapshot.val().destination);
 	console.log(snapshot.val().frequency);
-	console.log(snapshot.val().nextArrival);
+	console.log(snapshot.val().time);
+	console.log(snapshot.val().min);
 	
 	// Change the HTML to reflect
 	var row = $("<tr>");
 	row.append("<td>" + snapshot.val().name + "</td>");
 	row.append("<td>" + snapshot.val().destination + "</td>");
 	row.append("<td>" + snapshot.val().frequency + "</td>");
-	row.append("<td>" + snapshot.val().nextArrival + "</td>");
-	row.append("<td> ?? </td>");
+	row.append("<td>" + snapshot.val().time + "</td>");
+	row.append("<td>" + snapshot.val().min + "</td>");
 
 	$("#table").append(row);
 
